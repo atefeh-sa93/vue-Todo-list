@@ -1,0 +1,196 @@
+/* body part */
+body {
+    box-sizing: border-box;
+}
+
+#app {
+    text-align: center;
+    display:    flex;
+    background: #B0A3A7;
+    margin-top: 100px;
+}
+
+.home {
+    width: 100%;
+}
+
+.card .card-body {
+    padding: 1.25rem 1.75rem
+}
+
+.card .card-title {
+    color:          #0C064D;
+    font-size:      40px;
+    text-transform: capitalize;
+    font-weight:    900;
+}
+
+
+.input-item {
+    display:         flex;
+    justify-content: center;
+    align-items:     center;
+    padding-top:     50px;
+    margin-bottom:   1.5rem;
+    overflow:        hidden
+}
+
+.input-item input[type="text"] {
+    outline:    none;
+    border:     none;
+    padding:    10px;
+    background: transparent;
+    font-size:  20px;
+    color:      #000;
+    width:      100%;
+}
+
+.input-item input[type="text"]:focus {
+    border-bottom: 1px solid #0C064D;
+}
+
+.input-item input[type="text"]:focus::-webkit-input-placeholder {
+    color: #0C064D;
+}
+
+.input-btn {
+    outline:    none;
+    background: transparent;
+    border:     none;
+    color:      #0C064D;
+    font-size:  30px;
+}
+
+.list-wrapper {
+    height:     100%;
+    max-height: 100%;
+    border:     1px solid transparent;
+    padding:    30px;
+    margin:     50px;
+
+}
+
+.list-wrapper ul {
+    margin:  0;
+    padding: 0;
+}
+
+.list-wrapper ul li {
+    position:        relative;
+    list-style-type: none;
+    background:      #817290;
+    font-size:       18px;
+    transition:      0.2s;
+    display:         flex;
+    justify-content: space-between;
+    align-items:     center;
+    padding:         30px;
+    margin:          30px;
+}
+
+.todo-list {
+    width:      100%;
+    background: transparent;
+    padding:    10%;
+    margin:     40px 0;
+}
+
+.trash-btn {
+    cursor:       pointer;
+    margin-right: 10px;
+}
+
+.actions {
+    display:      flex;
+    align-items:  baseline;
+    padding-left: 50px;
+}
+
+.trash-btn:hover {
+    color: #BE0909;
+}
+
+
+.todo-list-label {
+    padding:     10px;
+    margin-left: 12px;
+    outline: none;
+}
+
+.form-check {
+    display:             block;
+    position:            relative;
+    padding-left:        35px;
+    margin-bottom:       12px;
+    cursor:              pointer;
+    font-size:           22px;
+    -webkit-user-select: none;
+    -moz-user-select:    none;
+    -ms-user-select:     none;
+    user-select:         none;
+}
+
+.form-check input {
+    position: absolute;
+    opacity:  0;
+    cursor:   pointer;
+}
+
+.form-check .check-mark {
+    position:         absolute;
+    top:              -5px;
+    left:             0;
+    height:           25px;
+    width:            25px;
+    background-color: #EEEEEE;
+}
+
+.form-check .check-mark:hover {
+    background: #B0A3A7;
+}
+
+.form-check input:checked ~ .check-mark {
+    background-color: #66A65C;
+}
+
+.form-check .check-mark:after {
+    content:  "";
+    position: absolute;
+    display:  none;
+}
+
+.form-check input:checked ~ .check-mark:after {
+    display: block;
+}
+
+.form-check .check-mark:after {
+    left:              9px;
+    top:               5px;
+    width:             3px;
+    height:            10px;
+    border:            solid white;
+    border-width:      0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform:     rotate(45deg);
+    transform:         rotate(45deg);
+}
+
+.todo-list-edit {
+    font-size:   15px;
+    margin-left: 12px;
+    padding:     10px;
+    width:       100%;
+    border:      1px solid transparent;
+}
+
+.todo-list-edit:focus {
+    outline: none;
+}
+
+.completed {
+    text-decoration: line-through;
+    color:           #FFFFFF;
+}
+
+
+
