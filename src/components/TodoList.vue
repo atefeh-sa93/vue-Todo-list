@@ -20,11 +20,60 @@
                   <font-awesome-icon icon="plus" />
                 </button>
               </div>
+
+              <!--Todos information!-->
+              <div class="todo-information">
+                <div>
+                  <label>
+                    <input
+                      type="checkbox"
+                      :checked="!anyRemaining"
+                      @click="changeAllTodos"
+                    />
+                    <span class="check-mark"></span>
+                    Check All
+                  </label>
+                </div>
+                <div class="remaining">{{ remaining }} items left</div>
+              </div>
+
+              <!-- Todos information status!-->
+              <div class="todo-information">
+                <div>
+                  <button
+                    :class="{ active: filter === 'all' }"
+                    @click="filter = 'all'"
+                  >
+                    All
+                  </button>
+                  <button
+                    :class="{ active: filter === 'active' }"
+                    @click="filter = 'active'"
+                  >
+                    Active
+                  </button>
+                  <button
+                    :class="{ active: filter === 'completed' }"
+                    @click="filter = 'completed'"
+                  >
+                    Completed
+                  </button>
+                </div>
+
+                <div>
+                  <transition name="fade">
+                    <button v-if="showCompletedButton" @click="clearCompleted">
+                      Clear Completed
+                    </button>
+                  </transition>
+                </div>
+              </div>
+
               <!--Todos list Items!-->
               <div class="list-wrapper">
                 <ul class="todo-list">
                   <li
-                    v-for="(todo, index) in todoList"
+                    v-for="(todo, index) in todoListFiltered"
                     :key="todo.id"
                     class="todo-item"
                   >
@@ -72,10 +121,12 @@
 <script>
 export default {
   name: "TodoList",
+
   data() {
     return {
       newTodo: "",
       idForTodoList: 3,
+      filter: "all",
       todoList: [
         {
           id: 1,
@@ -92,11 +143,32 @@ export default {
       ]
     };
   },
-  directives: {
-    inserted(el) {
-      el.focus();
+
+  computed: {
+    remaining() {
+      return this.todoList.filter(todo => !todo.completed).length;
+    },
+
+    anyRemaining() {
+      return this.remaining !== 0;
+    },
+
+    todoListFiltered() {
+      if (this.filter === "all") {
+        return this.todoList;
+      } else if (this.filter === "active") {
+        return this.todoList.filter(todo => !todo.completed);
+      } else if (this.filter === "completed") {
+        return this.todoList.filter(todo => todo.completed);
+      }
+      return this.todoList;
+    },
+
+    showCompletedButton(){
+      return this.todoList.filter(todo => todo.completed).length > 0;
     }
   },
+
   methods: {
     /**
      * Add new Item to Todo list
@@ -133,6 +205,16 @@ export default {
      */
     editTaskDone(todo) {
       todo.editing = false;
+    },
+
+    changeAllTodos() {
+      this.todoList.forEach(item => {
+        item.completed = event.target.checked;
+      });
+    },
+
+    clearCompleted() {
+      this.todoList = this.todoList.filter(todo => !todo.completed);
     }
   }
 };
